@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CloudConfig" />
+        <module name="core" />
+        <module name="CustomerServer" />
+        <module name="eurakeServer" />
+        <module name="FeginServer" />
+        <module name="OrderServer" />
+        <module name="pojo" />
+        <module name="ZuulServer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CloudConfig" target="1.8" />
+      <module name="core" target="1.5" />
+      <module name="CustomerServer" target="1.8" />
+      <module name="eurakeServer" target="1.8" />
+      <module name="FeginServer" target="1.8" />
+      <module name="OrderServer" target="1.8" />
+      <module name="pojo" target="1.5" />
+      <module name="springCloud" target="1.5" />
+      <module name="ZuulServer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

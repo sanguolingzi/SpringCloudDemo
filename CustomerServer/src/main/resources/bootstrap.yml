@@ -1,0 +1,11 @@
+#这里 通过{application.name} - {profile} 确定云配置的文件名称
+spring:
+  application:
+    name: customer
+  cloud:
+    config:
+          profile: dev
+          #uri: http://localhost:8887/
+          discovery:
+               enabled: true
+               serviceId: CloudConfig

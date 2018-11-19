@@ -1,0 +1,20 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # 是否注册到eurekaserver
+    registerWithEureka: false
+    # 是否拉取信息
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # false 关闭自我保护，不管如何都要剔除心跳检测异常的服务
+    enable-self-preservation: false
+    #清理间隔
+    eviction-interval-timer-in-ms: 5000
+    # updatePeerEurekaNodes执行间隔
+    #peerEurekaNodesUpdateIntervalMs: 10000000
+    #waitTimeInMsWhenSyncEmpty: 0

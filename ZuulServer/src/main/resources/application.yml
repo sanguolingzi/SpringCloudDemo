@@ -1,0 +1,44 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # 每间隔1s，向服务端发送一次心跳，证明自己依然”存活“
+    lease-renewal-interval-in-seconds: 5
+    # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
+    lease-expiration-duration-in-seconds: 10
+server:
+  port: 8889
+spring:
+  application:
+    name: ZuulServer
+
+zuul:
+  routes:
+     customer:
+       path: /Customer/**
+       serviceId: CustomerServer
+     order:
+       path: /Order/**
+       serviceId: OrderServer
+ # 直接使用url访问 则这样配置超时时间
+ # host: d
+ #   connections: 500
+ #   socket-timeout-millis: 60000
+ #   connect-timeout-millis: 60000
+
+
+#若是通过serviceId访问 则使用ribbon 和 hystrix 超时时间
+#2个配置取的是 数值小的 谁小谁生效
+ribbon:
+    ReadTimeout: 4000
+    SocketTimeout: 4000
+
+hystrix:
+    command:
+    #default 是指给所有路由默认 若要指定路由 此处应为 注册在eurake的名称 如 OrderServer
+        default:
+            execution:
+                isolation:
+                     thread:
+                         timeoutInMilliseconds: 30000
