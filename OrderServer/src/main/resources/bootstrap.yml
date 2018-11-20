@@ -1,7 +1,7 @@
 #这里 通过{application.name} - {profile} 确定云配置的文件名称
 spring:
   application:
-    name: customerServer
+    name: orderServer
   cloud:
     config:
           profile: dev
@@ -10,4 +10,4 @@ spring:
                enabled: true
                serviceId: CloudConfig
 server:
-  port: 8771
+  port: 8773
