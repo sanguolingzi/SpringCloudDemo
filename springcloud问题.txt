@@ -1,0 +1,9 @@
+2018-11-21
+
+ springconfig 配置对称加密
+ (1)jce 下载不限制长度的jce 替换jdk原有的jce
+ (2)encrypt.key 参数需要配置在 bootstrap.yml 或者 bootstrap.application
+
+ 将git中配置文件加密的内容替换为 {cipher}加密后的内容
+ 如 password: '{cipher}ssaaafffs'
+ 注意如果配置文件为yml方式，需要加单引号，如果是properties不加

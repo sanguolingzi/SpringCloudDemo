@@ -12,15 +12,30 @@ server:
 spring:
   application:
     name: ZuulServer
+  #mvc:
+  #  throw-exception-if-no-handler-found: true
+
 
 zuul:
+  host:
+    max-total-connections: 200
+    max-per-route-connections: 20
   routes:
      customer:
+      # *只能匹配单层   **分层匹配 也就是可以匹配多层
        path: /Customer/**
        serviceId: CustomerServer
+       #某个服务的重试
+       retryable: false
+       # Url 方式访问 不会执行熔断以及无法使用ribbon做负载均衡
      order:
        path: /Order/**
        serviceId: OrderServer
+  #全局重试机制
+  retryable: false
+  #ignored-services: '*'
+  # prefix:
+  # strip-prefix: true
  # 直接使用url访问 则这样配置超时时间
  # host: d
  #   connections: 500
@@ -42,3 +57,5 @@ hystrix:
                 isolation:
                      thread:
                          timeoutInMilliseconds: 30000
+                #timeout:
+                #     enabled: false
