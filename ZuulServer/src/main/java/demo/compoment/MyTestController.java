@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 public class MyTestController implements ErrorController{
     @Override
     public String getErrorPath() {
-        return null;
+        return "";
     }
 
     @RequestMapping(value="error")
