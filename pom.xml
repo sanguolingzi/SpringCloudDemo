@@ -17,5 +17,6 @@
         <module>pojo</module>
         <module>ZuulServer</module>
         <module>CloudConfig</module>
+        <module>SSOAuth</module>
     </modules>
 </project>
