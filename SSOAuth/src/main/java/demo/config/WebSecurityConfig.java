@@ -4,6 +4,7 @@ import demo.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * 安全配置
  */
 @Configuration
+@Order(3)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -47,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*
+         /*
         http.authorizeRequests()
                 //所有请求都需要鉴权认证
             .anyRequest().authenticated()
@@ -56,8 +58,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             .httpBasic();
         */
-        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS).permitAll().anyRequest().authenticated().and()
+        http.authorizeRequests().antMatchers(HttpMethod.OPTIONS)
+                .permitAll()
+                .antMatchers("/oauth/authorize","/login")
+                .permitAll()
+                .anyRequest().authenticated().and()
                 .httpBasic().and().csrf().disable();
+
     }
 
     @Override

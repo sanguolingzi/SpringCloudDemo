@@ -1,15 +1,23 @@
+/*
 package demo.compoment;
 
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.stereotype.Component;
 
-@Component
-@EnableOAuth2Sso
+//@Component
+//@EnableOAuth2Sso
+//@EnableWebSecurity
+//@Order(0)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/login").permitAll()
+                .and()
+                //.authorizeRequests().anyRequest().authenticated()
+                //.and()
+                .csrf().disable();
+        */
+/*
         http.
                 antMatcher("/**")
                 // 所有请求都得经过认证和授权
@@ -24,5 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").permitAll()
                 // 退出成功后，跳转到/路径。
                 .logoutSuccessUrl("/login");
+         *//*
+
     }
 }
+*/

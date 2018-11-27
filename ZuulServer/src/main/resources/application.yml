@@ -9,23 +9,23 @@ eureka:
     lease-expiration-duration-in-seconds: 10
 server:
   port: 8889
-security:
-  user:
-     password: user  # 直接登录时的密码
-  ignored: /
-  sessions: never   # session策略
-  oauth2:
+# --security:
+  #user:
+  #   password: user  # 直接登录时的密码
+  #ignored: /
+  #sessions: never   # session策略
+# --  oauth2:
     #sso:
     #   loginPath: /login   # 登录路径
-    client:
-       clientId: 1
-       clientSecret: 2
+# --    client:
+# --       clientId: 1
+# --       clientSecret: 2
        #进行授权的服务，Default URL: /oauth/authorize
-       accessTokenUri: http://localhost:7001/oauth/token
+# --       accessTokenUri: http://localhost:7001/oauth/token
        #获取token的服务，Default URL: /oauth/token
-       userAuthorizationUri: http://localhost:7001/oauth/authorize
-    resource:
-       userInfoUri: http://localhost:7001/getUser
+# --       userAuthorizationUri: http://localhost:7001/oauth/authorize
+# --    resource:
+# --       userInfoUri: http://localhost:7001/getUser
     #   preferTokenInfo: false
 spring:
   application:
