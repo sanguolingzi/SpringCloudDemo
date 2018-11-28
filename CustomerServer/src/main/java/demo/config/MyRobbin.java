@@ -10,6 +10,7 @@ public class MyRobbin {
 
     @Bean
     public IRule myRule(){
+        System.out.println("init myRule");
         return new RandomRule();
     }
 }

@@ -16,7 +16,8 @@ import org.springframework.context.annotation.ComponentScan;
         "demo.business.feign"
 })
 @ComponentScan(basePackages = {
-        "demo.business"
+        "demo.business",
+        "demo.config"
 })
 @RibbonClients(defaultConfiguration = MyRobbin.class)
 public class CustomerServerApplication {
