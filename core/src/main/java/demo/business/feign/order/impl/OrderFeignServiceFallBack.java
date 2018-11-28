@@ -7,12 +7,10 @@ import pojo.order.OrderModel;
 @Component
 public class OrderFeignServiceFallBack implements OrderFeignService {
 
-    @Override
     public String orderMessage(String message) {
         return "orderMessage is not work  please check OrderServer ";
     }
 
-    @Override
     public String saveMessage(OrderModel orderModel) {
         return "saveMessage is not work  please check OrderServer ";
     }
