@@ -7,7 +7,11 @@
     <artifactId>core</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>testSpringCloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -24,6 +28,13 @@
             <groupId>testSpringCloud</groupId>
             <artifactId>pojo</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- 通用mapper集成 -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${tkmapper.version}</version>
         </dependency>
     </dependencies>
 

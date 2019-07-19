@@ -3,10 +3,28 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>spring</groupId>
-    <artifactId>cloud</artifactId>
+    <groupId>testSpringCloud</groupId>
+    <artifactId>parent</artifactId>
+    <name>parent</name>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <log4j.version>1.2.17</log4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <spring.version>4.3.14.RELEASE</spring.version>
+        <httpclient.version>4.5.5</httpclient.version>
+        <fastjson.version>1.2.46</fastjson.version>
+        <tkmapper.version>3.5.0</tkmapper.version>
+        <jedis.version>2.9.0</jedis.version>
+        <ehcache.version>2.10.4</ehcache.version>
+        <spring.data.redis>1.7.5.RELEASE</spring.data.redis>
+        <commonsio.version>2.4</commonsio.version>
+        <commonscodec.version>1.11</commonscodec.version>
+        <mysql.version>5.1.46</mysql.version>
+    </properties>
 
     <modules>
         <module>eurakeServer</module>
@@ -17,6 +35,10 @@
         <module>pojo</module>
         <module>ZuulServer</module>
         <module>CloudConfig</module>
+        <module>generator</module>
+
+        <!--
         <module>SSOAuth</module>
+        -->
     </modules>
 </project>
