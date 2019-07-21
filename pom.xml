@@ -24,6 +24,10 @@
         <commonsio.version>2.4</commonsio.version>
         <commonscodec.version>1.11</commonscodec.version>
         <mysql.version>5.1.46</mysql.version>
+        <hikariCP.version>3.2.0</hikariCP.version>
+        <druid.version>1.1.12</druid.version>
+        <javax.el.version>2.2.4</javax.el.version>
+        <org.glassfish.web.version>2.2.4</org.glassfish.web.version>
     </properties>
 
     <modules>
@@ -36,6 +40,7 @@
         <module>ZuulServer</module>
         <module>CloudConfig</module>
         <module>generator</module>
+        <module>CustomerFegin</module>
 
         <!--
         <module>SSOAuth</module>
