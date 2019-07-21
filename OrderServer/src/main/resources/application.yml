@@ -8,22 +8,16 @@ eureka:
     # 告诉服务端，如果我2s之内没有给你发心跳，就代表我“死”了，将我踢出掉。
     lease-expiration-duration-in-seconds: 10
 server:
-  port: 8771
+  port: 8773
 spring:
   application:
-    name: CustomerServer
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    name: OrderServer
   datasource:
     url: jdbc:mysql://localhost:3306/yhtz?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: yhtz
     password: yhtz
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-
 
 #ribbon:
 #    ReadTimeout: 10000 #获取或设置读取操作未完成时发生超时之前的毫秒数。

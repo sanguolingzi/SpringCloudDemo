@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.business.mapper.info.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="pojo.order.OrderPojo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_type" jdbcType="SMALLINT" property="orderType" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="pro_amount" jdbcType="DECIMAL" property="proAmount" />
+    <result column="freight" jdbcType="DECIMAL" property="freight" />
+    <result column="discount" jdbcType="DECIMAL" property="discount" />
+    <result column="total_amount" jdbcType="DECIMAL" property="totalAmount" />
+    <result column="pay_integral" jdbcType="DECIMAL" property="payIntegral" />
+    <result column="integral_amount" jdbcType="DECIMAL" property="integralAmount" />
+    <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
+    <result column="pay_type" jdbcType="SMALLINT" property="payType" />
+    <result column="give_integral" jdbcType="DECIMAL" property="giveIntegral" />
+    <result column="order_status" jdbcType="SMALLINT" property="orderStatus" />
+    <result column="order_sourse" jdbcType="SMALLINT" property="orderSourse" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="receive_address_id" jdbcType="INTEGER" property="receiveAddressId" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address_default" jdbcType="SMALLINT" property="addressDefault" />
+    <result column="audit_status" jdbcType="SMALLINT" property="auditStatus" />
+    <result column="total_order_no" jdbcType="VARCHAR" property="totalOrderNo" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="del_flag" jdbcType="SMALLINT" property="delFlag" />
+    <result column="orders_no" jdbcType="VARCHAR" property="ordersNo" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="delivery_time" jdbcType="TIMESTAMP" property="deliveryTime" />
+    <result column="complete_time" jdbcType="TIMESTAMP" property="completeTime" />
+    <result column="evaluate_time" jdbcType="TIMESTAMP" property="evaluateTime" />
+    <result column="cancel_time" jdbcType="TIMESTAMP" property="cancelTime" />
+    <result column="is_auto_cancel" jdbcType="SMALLINT" property="isAutoCancel" />
+    <result column="is_give_integral" jdbcType="SMALLINT" property="isGiveIntegral" />
+    <result column="express_no" jdbcType="VARCHAR" property="expressNo" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="is_rebate" jdbcType="SMALLINT" property="isRebate" />
+    <result column="settlement_status" jdbcType="SMALLINT" property="settlementStatus" />
+    <result column="settlement_amount" jdbcType="DECIMAL" property="settlementAmount" />
+    <result column="settlement_id" jdbcType="INTEGER" property="settlementId" />
+    <result column="is_game_order" jdbcType="SMALLINT" property="isGameOrder" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="game_notify_result" jdbcType="SMALLINT" property="gameNotifyResult" />
+    <result column="tax_type" jdbcType="SMALLINT" property="taxType" />
+    <result column="tax_no" jdbcType="VARCHAR" property="taxNo" />
+    <result column="tax_company" jdbcType="VARCHAR" property="taxCompany" />
+    <result column="receipt_type" jdbcType="SMALLINT" property="receiptType" />
+    <result column="promotion_price" jdbcType="DECIMAL" property="promotionPrice" />
+    <result column="promotion_user" jdbcType="INTEGER" property="promotionUser" />
+    <result column="reward_amount" jdbcType="DECIMAL" property="rewardAmount" />
+    <result column="promotion_rebate" jdbcType="SMALLINT" property="promotionRebate" />
+    <result column="partner_id" jdbcType="INTEGER" property="partnerId" />
+    <result column="partner_amount" jdbcType="DECIMAL" property="partnerAmount" />
+    <result column="member_amount" jdbcType="DECIMAL" property="memberAmount" />
+    <result column="upgrade_promotion_user" jdbcType="INTEGER" property="upgradePromotionUser" />
+    <result column="upgrade_promotion_price" jdbcType="DECIMAL" property="upgradePromotionPrice" />
+    <result column="proxy_shop_id" jdbcType="INTEGER" property="proxyShopId" />
+    <result column="room_card_num" jdbcType="DECIMAL" property="roomCardNum" />
+  </resultMap>
+</mapper>

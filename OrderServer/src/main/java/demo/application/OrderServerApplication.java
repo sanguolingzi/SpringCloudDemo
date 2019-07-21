@@ -14,7 +14,8 @@ import org.springframework.context.annotation.ComponentScan;
         "demo.business.feign"
 })
 @ComponentScan(basePackages = {
-        "demo.business"
+        "demo.business",
+        "demo.config"
 })
 public class OrderServerApplication {
     public static void main(String[] args) {

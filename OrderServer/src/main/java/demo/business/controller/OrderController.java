@@ -1,35 +1,23 @@
 package demo.business.controller;
 
-import demo.business.service.OrderService;
+import demo.business.service.info.OrderInfoService;
+import model.order.OrderModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import pojo.order.OrderModel;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("order")
 public class OrderController {
 
     @Autowired
-    private OrderService orderServiceImpl;
+    private OrderInfoService orderInfoServiceImpl;
 
-    @GetMapping(value="orderMessage")
-    public String getOrderMessage(@RequestParam("message") String message){
-        try{
-            Thread.sleep(Long.valueOf(message));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return orderServiceImpl.getMessage(message);
+    @GetMapping(value="getOrderInfo")
+    public OrderModel getOrderInfo(@RequestParam("orderId") String orderId){
+        return orderInfoServiceImpl.getOrderInfo(orderId);
     }
-
-    @PostMapping(value="/saveMessage")
-    public String saveMessage(@RequestBody  OrderModel orderModel){
-        return orderServiceImpl.saveMessage(orderModel);
-    }
-
-    @GetMapping(value="orderToCustomerMessage")
-    public String orderToCustomerMessage(@RequestParam("message") String message){
-        return orderServiceImpl.orderToCustomerMessage(message);
-    }
-
 
 }
