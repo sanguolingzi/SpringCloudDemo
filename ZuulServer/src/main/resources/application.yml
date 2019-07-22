@@ -41,13 +41,13 @@ zuul:
   routes:
      customer:
       # *只能匹配单层   **分层匹配 也就是可以匹配多层
-       path: /Customer/**
+       path: /customer/**
        serviceId: CustomerServer
        #某个服务的重试
        retryable: false
        # Url 方式访问 不会执行熔断以及无法使用ribbon做负载均衡
      order:
-       path: /Order/**
+       path: /order/**
        serviceId: OrderServer
   #全局重试机制
   retryable: false
@@ -64,8 +64,11 @@ zuul:
 #若是通过serviceId访问 则使用ribbon 和 hystrix 超时时间
 #2个配置取的是 数值小的 谁小谁生效
 ribbon:
+    eureka:
+       enable: false    #暂时关闭eureka对ribbon的支持
     ReadTimeout: 4000
     SocketTimeout: 4000
+
 
 hystrix:
     command:

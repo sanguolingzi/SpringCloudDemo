@@ -3,12 +3,15 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CloudConfig/CloudConfig.iml" filepath="$PROJECT_DIR$/CloudConfig/CloudConfig.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomerFegin/CustomerFegin.iml" filepath="$PROJECT_DIR$/CustomerFegin/CustomerFegin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CustomerFeigin.iml" filepath="$PROJECT_DIR$/CustomerFeigin.iml" />
       <module fileurl="file://$PROJECT_DIR$/CustomerServer/CustomerServer.iml" filepath="$PROJECT_DIR$/CustomerServer/CustomerServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/FeginServer/FeginServer.iml" filepath="$PROJECT_DIR$/FeginServer/FeginServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/OrderServer/OrderServer.iml" filepath="$PROJECT_DIR$/OrderServer/OrderServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/ZuulServer/ZuulServer.iml" filepath="$PROJECT_DIR$/ZuulServer/ZuulServer.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/eurakeServer/eurakeServer.iml" filepath="$PROJECT_DIR$/eurakeServer/eurakeServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/generator/generator.iml" filepath="$PROJECT_DIR$/generator/generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/pojo/pojo.iml" filepath="$PROJECT_DIR$/pojo/pojo.iml" />
       <module fileurl="file://$PROJECT_DIR$/springCloud.iml" filepath="$PROJECT_DIR$/springCloud.iml" />
     </modules>
