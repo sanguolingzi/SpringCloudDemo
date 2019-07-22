@@ -1,5 +1,6 @@
 package demo.business.controller;
 
+import demo.business.httpresponse.ResponseData;
 import demo.business.service.info.OrderInfoService;
 import model.order.OrderModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import utils.ResponseDataUtil;
 
 @RestController
 @RequestMapping("order")
@@ -16,8 +18,8 @@ public class OrderController {
     private OrderInfoService orderInfoServiceImpl;
 
     @GetMapping(value="getOrderInfo")
-    public OrderModel getOrderInfo(@RequestParam("orderId") String orderId){
-        return orderInfoServiceImpl.getOrderInfo(orderId);
+    public ResponseData<OrderModel> getOrderInfo(@RequestParam("orderId") String orderId){
+        return ResponseDataUtil.toSuccess(orderInfoServiceImpl.getOrderInfo(orderId));
     }
 
 }

@@ -76,6 +76,8 @@ pagehelper:
   pagehelper:
     reasonable: true
     params=count: countSql
+logging:
+  config: classpath:logback.xml
 
 #OrderServer:
 #  ribbon:

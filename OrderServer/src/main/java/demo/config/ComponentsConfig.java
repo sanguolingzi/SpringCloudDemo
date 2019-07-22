@@ -1,7 +1,11 @@
 package demo.config;
 
+import com.netflix.loadbalancer.IRule;
+import com.netflix.loadbalancer.RoundRobinRule;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -59,6 +63,30 @@ public class ComponentsConfig
             }
         };
 
+    }
+
+    /**
+     * 开启客户端负载均衡
+     * restTemplate 是springboot服务间调用的基础
+     * 即使是定义了feign也是以restTemplate为基础做的高层次的封装和调用
+     * @return
+     */
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate(){
+        return new RestTemplate();
+    }
+
+    /**
+     * 定义ribbon的负载均衡策略
+     * @return
+     */
+    @Bean
+    public IRule ribbonRule(){
+        //随机负载
+        //return new RandomRule();
+        //轮询负载
+        return new RoundRobinRule();
     }
     /*
     @Bean

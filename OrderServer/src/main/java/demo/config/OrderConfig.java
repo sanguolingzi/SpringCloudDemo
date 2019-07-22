@@ -1,23 +1,19 @@
 package demo.config;
 
 import org.apache.http.HttpEntityEnclosingRequest;
-import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.config.MessageConstraints;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +48,7 @@ public class OrderConfig {
         // 设置到某个路由的最大连接数，会覆盖defaultMaxPerRoute
         //connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost("somehost", 80)),120);
 
-        /**
+/**
          * socket配置（默认配置 和 某个host的配置）
 
         SocketConfig socketConfig = SocketConfig.custom()
@@ -66,10 +62,12 @@ public class OrderConfig {
         connectionManager.setDefaultSocketConfig(socketConfig);
          */
 
-        /**
+
+/**
          * HTTP connection相关配置（默认配置 和 某个host的配置）
          * 一般不修改HTTP connection相关配置，故不设置
-         */
+         *//*
+
         //消息约束
         MessageConstraints messageConstraints = MessageConstraints.custom()
                 .setMaxHeaderCount(200)
@@ -77,9 +75,11 @@ public class OrderConfig {
                 .build();
 
 
-        /**
+        */
+/**
          * request请求相关配置
          */
+
         RequestConfig defaultRequestConfig = RequestConfig.custom()
                 .setConnectTimeout(2 * 1000)         //连接超时时间
                 .setSocketTimeout(2 * 1000)          //读超时时间（等待数据超时时间）
@@ -87,11 +87,11 @@ public class OrderConfig {
                 .setStaleConnectionCheckEnabled(true)//检查是否为陈旧的连接，默认为true，类似testOnBorrow
                 .build();
 
-
-        /**
+         /**
          * 重试处理
          * 默认是重试3次
          */
+
         //禁用重试(参数：retryCount、requestSentRetryEnabled)
         HttpRequestRetryHandler requestRetryHandler = new DefaultHttpRequestRetryHandler(0, false);
 
@@ -135,18 +135,20 @@ public class OrderConfig {
             }
         };
 
-        /**
+/**
          * 创建httpClient
          */
+        //第一种方式返回httpclient
+       /*
         CloseableHttpClient httpclient = HttpClients.custom()
                 .setConnectionManager(connectionManager)             //连接管理器
                 .setProxy(new HttpHost("myproxy", 8080))       //设置代理
                 .setDefaultRequestConfig(defaultRequestConfig) //默认请求配置
                 .setRetryHandler(myRetryHandler)               //重试策略
                 .build();
+        */
 
-
-
+        //第二种方式返回httpclient
         connectionManager.setValidateAfterInactivity(2000);
         RequestConfig requestConfig = RequestConfig.custom()
                 .setSocketTimeout(65000) //服务器返回数据(response)的时间，超过抛出read timeout

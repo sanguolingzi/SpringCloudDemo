@@ -1,5 +1,7 @@
 package demo.business.httpresponse;
 
+import com.google.common.base.Objects;
+
 import java.util.Map;
 
 /**
@@ -67,5 +69,14 @@ public class ResponseData<T>
     public void setErrorInfo(Map<String, Object> errorInfo)
     {
         this.errorInfo = errorInfo;
+    }
+
+    /**
+     * 校验接口返回状态是否成功
+     * @return
+     */
+    public boolean success(){
+        return (resultInfo!=null&& Objects.equal(resultInfo.getCode(),ResponseConstant.RESULT_CODE_SUCCESS));
+
     }
 }
