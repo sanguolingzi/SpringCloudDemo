@@ -1,32 +1,33 @@
-package demo.config;
+package demo.business.config;
 
 import feign.Request;
 import feign.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 /**
  * 集成feign.logger重写其方法适应info级别的日志舒服
  */
-//@Component //放置在core 避免多个feign引用重复
-public class FeignCustomerLogger extends feign.Logger {
+@Component
+public class FeignLogger extends feign.Logger {
     private final Logger logger;
 
-    public FeignCustomerLogger() {
+    public FeignLogger() {
         this(feign.Logger.class);
     }
 
-    public FeignCustomerLogger(Class<?> clazz) {
+    public FeignLogger(Class<?> clazz) {
         this(LoggerFactory.getLogger(clazz));
     }
 
-    public FeignCustomerLogger(String name) {
+    public FeignLogger(String name) {
         this(LoggerFactory.getLogger(name));
     }
 
-    FeignCustomerLogger(Logger logger) {
+    FeignLogger(Logger logger) {
         this.logger = logger;
     }
 

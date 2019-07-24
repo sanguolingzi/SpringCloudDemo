@@ -26,7 +26,7 @@ public class ResponseDataUtil {
 
     public static ResponseData toFail(){
         ResponseData responseData = new ResponseData<>();
-        Result result = new Result();
+        Result result = new Result(ResponseConstant.RESULT_DESCRIPTION_FAILED);
         responseData.setResultInfo(result);
         return responseData;
     }

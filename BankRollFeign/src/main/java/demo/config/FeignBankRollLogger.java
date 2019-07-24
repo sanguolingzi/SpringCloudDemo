@@ -10,23 +10,23 @@ import java.io.IOException;
 /**
  * 集成feign.logger重写其方法适应info级别的日志舒服
  */
-//@Component //放置在core 避免多个feign引用重复
-public class FeignCustomerLogger extends feign.Logger {
+//@Component  //放置在core 避免多个feign引用重复
+public class FeignBankRollLogger extends feign.Logger {
     private final Logger logger;
 
-    public FeignCustomerLogger() {
+    public FeignBankRollLogger() {
         this(feign.Logger.class);
     }
 
-    public FeignCustomerLogger(Class<?> clazz) {
+    public FeignBankRollLogger(Class<?> clazz) {
         this(LoggerFactory.getLogger(clazz));
     }
 
-    public FeignCustomerLogger(String name) {
+    public FeignBankRollLogger(String name) {
         this(LoggerFactory.getLogger(name));
     }
 
-    FeignCustomerLogger(Logger logger) {
+    FeignBankRollLogger(Logger logger) {
         this.logger = logger;
     }
 

@@ -1,13 +1,12 @@
 package demo.business.controller;
 
 import demo.business.httpresponse.ResponseData;
+import demo.business.service.busi.OrderBusiService;
 import demo.business.service.info.OrderInfoService;
+import model.order.AddOrderModel;
 import model.order.OrderModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import utils.ResponseDataUtil;
 
 @RestController
@@ -22,4 +21,13 @@ public class OrderController {
         return ResponseDataUtil.toSuccess(orderInfoServiceImpl.getOrderInfo(orderId));
     }
 
+    //-------------------------------------------POST------------------------------------
+    @Autowired
+    private OrderBusiService orderBusiServiceImpl;
+
+    @PostMapping(value="addOrderInfo")
+    public ResponseData<OrderModel> addOrderInfo(@RequestBody AddOrderModel addOrderModel)
+    throws Exception{
+        return ResponseDataUtil.toSuccess(orderBusiServiceImpl.addOrderInfo(addOrderModel));
+    }
 }

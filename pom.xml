@@ -41,6 +41,9 @@
         <module>CloudConfig</module>
         <module>generator</module>
         <module>CustomerFegin</module>
+        <module>OrderFeign</module>
+        <module>BankRollServer</module>
+        <module>BankRollFeign</module>
 
         <!--
         <module>SSOAuth</module>

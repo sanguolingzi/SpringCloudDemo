@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="demo.business.mapper.info.BankRollInfoMapper">
+  <resultMap id="BaseResultMap" type="pojo.bankroll.BankRollPojo">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="integral" jdbcType="DECIMAL" property="integral" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="expense_subsidy" jdbcType="DECIMAL" property="expenseSubsidy" />
+    <result column="yoka_amount" jdbcType="DECIMAL" property="yokaAmount" />
+    <result column="not_yoka_amount" jdbcType="DECIMAL" property="notYokaAmount" />
+    <result column="star_coin" jdbcType="DECIMAL" property="starCoin" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+    <result column="del_flag" jdbcType="SMALLINT" property="delFlag" />
+    <result column="reward_amount" jdbcType="DECIMAL" property="rewardAmount" />
+    <result column="game_id" jdbcType="INTEGER" property="gameId" />
+    <result column="used_reward_amount" jdbcType="DECIMAL" property="usedRewardAmount" />
+  </resultMap>
+</mapper>
