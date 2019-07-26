@@ -16,4 +16,9 @@ public class BankRollFlowBusiServiceImpl implements BankRollFlowBusiService
     public int insertSelective(BankRollFlowPojo bankRollFlowPojo) {
         return bankRollFlowBusiMapper.insertSelective(bankRollFlowPojo);
     }
+
+    @Override
+    public int deleteByPrimaryKey(BankRollFlowPojo bankRollFlowPojo) {
+        return bankRollFlowBusiMapper.deleteByPrimaryKey(bankRollFlowPojo);
+    }
 }

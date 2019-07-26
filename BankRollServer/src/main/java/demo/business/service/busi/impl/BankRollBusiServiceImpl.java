@@ -41,4 +41,14 @@ public class BankRollBusiServiceImpl implements BankRollBusiService
             return "success";
         throw new Exception("updateBankrollForOrder failed");
     }
+
+    @Override
+    public int minusBankrollAmount(BankRollBusiModel bankRollBusiModel) {
+        return bankRollBusiMapper.minusBankrollAmount(bankRollBusiModel.getBankRollId(),bankRollBusiModel.getNewAmount());
+    }
+
+    @Override
+    public int addBankrollAmount(BankRollBusiModel bankRollBusiModel) {
+        return bankRollBusiMapper.addBankrollAmount(bankRollBusiModel.getBankRollId(),bankRollBusiModel.getNewAmount());
+    }
 }

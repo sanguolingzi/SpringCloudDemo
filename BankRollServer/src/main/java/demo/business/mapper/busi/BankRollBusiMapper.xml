@@ -27,4 +27,16 @@
     where id=#{id} and amount = #{oldAmount}
     and amount <choose><when test="flowType == 1 "> - </when><otherwise> + </otherwise></choose> #{amount} >= 0
   </update>
+
+  <update id="minusBankrollAmount" parameterType="java.util.Map">
+    update busi_customer_bankroll
+    set amount = amount - #{amount}
+    where id=#{id}
+  </update>
+
+  <update id="addBankrollAmount" parameterType="java.util.Map">
+    update busi_customer_bankroll
+    set amount = amount + #{amount}
+    where id=#{id}
+  </update>
 </mapper>

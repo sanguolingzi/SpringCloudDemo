@@ -1,21 +1,17 @@
 package demo.business.service.busi.impl;
 
 import demo.business.feign.BankrollFeignService;
-import demo.business.feign.CustomerFeignService;
 import demo.business.httpresponse.ResponseData;
 import demo.business.mapper.busi.OrderBusiMapper;
 import demo.business.service.busi.OrderBusiService;
 import model.bankroll.BankRollBusiModel;
 import model.bankroll.BankRollModel;
-import model.custoemr.CustomerModel;
 import model.order.AddOrderModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pojo.order.OrderPojo;
 import util.BankrollInfoEnum;
-
-import javax.transaction.Transactional;
 
 @Service
 public class OrderBusiServiceImpl implements OrderBusiService
@@ -26,12 +22,9 @@ public class OrderBusiServiceImpl implements OrderBusiService
     @Autowired
     private BankrollFeignService bankrollFeignService;
 
-    @Autowired
-    private CustomerFeignService customerFeignService;
-
 
     @Override
-    @Transactional(rollbackOn = Exception.class)
+    @Transactional(rollbackForClassName = {"Exception"})
     public String addOrderInfo(AddOrderModel addOrderModel) throws Exception{
         ResponseData<BankRollModel> bankRollModelResponseData
                 =  bankrollFeignService.getBankRollInfo(String.valueOf(addOrderModel.getCustomerId()));
@@ -56,5 +49,10 @@ public class OrderBusiServiceImpl implements OrderBusiService
         bankrollFeignService.updateBankroll(bankRollBusiModel);
 
         return "success";
+    }
+
+    @Override
+    public int insertSelective(OrderPojo orderPojo) {
+       return orderBusiMapper.insertSelective(orderPojo);
     }
 }

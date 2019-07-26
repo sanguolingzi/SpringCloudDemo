@@ -133,6 +133,14 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>1.2.5</version>
         </dependency>
+
+        <!-- tcc
+        <dependency>
+            <groupId>org.bytesoft</groupId>
+            <artifactId>bytetcc-supports-springcloud</artifactId>
+            <version>0.4.9</version>
+        </dependency>
+         -->
     </dependencies>
     <dependencyManagement>
         <dependencies>
