@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="BankRollFeign" />
+        <module name="BankRollServer" />
         <module name="CloudConfig" />
         <module name="core" />
         <module name="CustomerFegin" />
@@ -13,12 +15,15 @@
         <module name="eurakeServer" />
         <module name="FeginServer" />
         <module name="generator" />
+        <module name="OrderFeign" />
         <module name="OrderServer" />
         <module name="pojo" />
         <module name="ZuulServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BankRollFeign" target="1.5" />
+      <module name="BankRollServer" target="1.8" />
       <module name="CloudConfig" target="1.8" />
       <module name="core" target="1.8" />
       <module name="CustomerFegin" target="1.5" />
@@ -27,6 +32,7 @@
       <module name="eurakeServer" target="1.8" />
       <module name="FeginServer" target="1.8" />
       <module name="generator" target="1.8" />
+      <module name="OrderFeign" target="1.5" />
       <module name="OrderServer" target="1.8" />
       <module name="pojo" target="1.5" />
       <module name="springCloud" target="1.5" />

@@ -2,10 +2,13 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankRollFeign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BankRollServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CloudConfig" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CustomerFegin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/CustomerServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/FeginServer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/OrderFeign" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/OrderServer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SSOAuth" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ZuulServer" charset="UTF-8" />

@@ -1,6 +1,9 @@
 package demo.business.controller;
 
 
+import com.netflix.appinfo.EurekaInstanceConfig;
+import com.netflix.discovery.DiscoveryManager;
+import com.netflix.discovery.EurekaClientConfig;
 import demo.business.httpresponse.ResponseData;
 import demo.business.service.busi.BankRollBusiService;
 import demo.business.service.info.BankRollInfoService;
@@ -22,6 +25,24 @@ public class BankRollController {
             throws Exception
     {
         return ResponseDataUtil.toSuccess(bankRollInfoService.selectByCustomerId(customerId));
+    }
+
+    @GetMapping(value = "/offLine")
+    public ResponseData<String> offLine()
+            throws Exception
+    {
+        DiscoveryManager.getInstance().shutdownComponent();
+        return ResponseDataUtil.toSuccess();
+    }
+
+    @GetMapping(value = "/onLine")
+    public ResponseData<String> onLine()
+            throws Exception
+    {
+        EurekaClientConfig eurekaClientConfig = DiscoveryManager.getInstance().getEurekaClientConfig();
+        EurekaInstanceConfig eurekaInstanceConfig = DiscoveryManager.getInstance().getEurekaInstanceConfig();
+        DiscoveryManager.getInstance().initComponent(eurekaInstanceConfig,eurekaClientConfig);
+        return ResponseDataUtil.toSuccess();
     }
 
     //---------------------------------------POST-----------------------------------------
