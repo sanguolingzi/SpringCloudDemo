@@ -23,6 +23,15 @@ spring:
     password: yhtz
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  activemq:
+    #broker-url: tcp://localhost:61616
+    broker-url: nio://localhost:61618
+    user: lx
+    password: 123456
+    pool:
+      max-connections: 20
+    send-timeout: 5000
+    in-memory: true
 
 
 #ribbon:
@@ -57,6 +66,12 @@ management:
 
 customer:
     message: 你好中国人更新后
+    activemq:
+        queue:
+          testQueue: testQueue
+          testPersistQueue: testPersistQueue
+        topic:
+
 
 
 #mybatis配置
