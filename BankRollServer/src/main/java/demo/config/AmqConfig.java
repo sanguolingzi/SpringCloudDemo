@@ -76,13 +76,13 @@ public class AmqConfig implements JmsListenerConfigurer {
         return pooledConnectionFactory;
     }
     /**
-     * 控制 jmslistener连接
+     * 控制 jmslistener连接 Topic用
      * @param connectionFactory
      * @return
      */
-    @Bean("jmsListenerContainerFactory")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory,
-             DefaultJmsListenerContainerFactoryConfigurer configurer) {
+    @Bean("jmsListenerContainerFactoryForOrderTestTopic")
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactoryForOrderTestTopic(ConnectionFactory connectionFactory,
+                                                                                           DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         //设置消息确认模式 这里设置的是单条消息确认 由于和spring集成 用client确认模式 会被spring自动确认
@@ -97,6 +97,11 @@ public class AmqConfig implements JmsListenerConfigurer {
         factory.setTaskExecutor(Executors.newFixedThreadPool(20));
         //每个任务最大的任务数目
         //factory.setMaxMessagesPerTask(1);
+
+        //false 为点对点 true 为 发布/订阅
+        factory.setPubSubDomain(true);
+        factory.setClientId("bankrollTestTopic");
+        factory.setSubscriptionDurable(true);
         //设置信息
         configurer.configure(factory, connectionFactory);
         return factory;

@@ -25,13 +25,14 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   activemq:
     #broker-url: tcp://localhost:61616
-    broker-url: nio://localhost:61618
+    #broker-url: nio://localhost:61618
+    broker-url: failover:(nio://localhost:61618,nio://localhost:61619)
     user: lx
     password: 123456
-    pool:
-      max-connections: 20
-    send-timeout: 5000
-    in-memory: true
+    #pool:
+    #  max-connections: 20
+    #send-timeout: 5000
+    #in-memory: true
 
 
 #ribbon:
@@ -71,6 +72,7 @@ customer:
           testQueue: testQueue
           testPersistQueue: testPersistQueue
         topic:
+          testPersistTopic: testPersistTopic
 
 
 

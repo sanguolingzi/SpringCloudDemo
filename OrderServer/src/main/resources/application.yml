@@ -20,14 +20,15 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   activemq:
     #broker-url: tcp://localhost:61616
-    broker-url: nio://localhost:61618
+    #broker-url: nio://localhost:61618
+    broker-url: failover:(nio://localhost:61618,nio://localhost:61619)
     user: lx
     password: 123456
-    pool:
-      max-connections: 20
-      block-if-full-timeout: 5000
-    send-timeout: 5000
-    in-memory: true
+    #pool:
+    #  max-connections: 20
+    #  block-if-full-timeout: 5000
+    #send-timeout: 5000
+    #in-memory: true
 
 #ribbon:
 #    ReadTimeout: 10000 #获取或设置读取操作未完成时发生超时之前的毫秒数。

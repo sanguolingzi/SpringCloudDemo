@@ -4,6 +4,8 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.ActiveMQPrefetchPolicy;
 import org.apache.activemq.RedeliveryPolicy;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
+import org.apache.activemq.jms.pool.PooledConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +46,9 @@ public class AmqConfig implements JmsListenerConfigurer {
     @Value("${customer.activemq.queue.testPersistQueue}")
     private String testPersistQueue;
 
+    @Value("${customer.activemq.topic.testPersistTopic}")
+    private String testPersistTopic;
+
     @Override
     public void configureJmsListeners(JmsListenerEndpointRegistrar jmsListenerEndpointRegistrar) {
 
@@ -73,18 +78,19 @@ public class AmqConfig implements JmsListenerConfigurer {
         redeliveryPolicy.setInitialRedeliveryDelay(5000l);
         connectionFactory.setRedeliveryPolicy(redeliveryPolicy);
         //异步发送消息
-        //connectionFactory.setAlwaysSyncSend(true);
-
+        connectionFactory.setAlwaysSyncSend(true);
+        connectionFactory.setProducerWindowSize(1024);
+        connectionFactory.setSendTimeout(2000);
         //设置预获取属性设置
         ActiveMQPrefetchPolicy activeMQPrefetchPolicy = new ActiveMQPrefetchPolicy();
         activeMQPrefetchPolicy.setQueuePrefetch(50);
         connectionFactory.setPrefetchPolicy(activeMQPrefetchPolicy);
-        /*
+
         PooledConnectionFactory pooledConnectionFactory = new PooledConnectionFactory();
         pooledConnectionFactory.setMaxConnections(20);
+        //pooledConnectionFactory.setMaximumActiveSessionPerConnection(5);
         pooledConnectionFactory.setConnectionFactory(connectionFactory);
-        */
-        return connectionFactory;
+        return pooledConnectionFactory;
     }
     /**
      * 控制 jmslistener连接
@@ -124,6 +130,13 @@ public class AmqConfig implements JmsListenerConfigurer {
         return queue;
     }
 
+    @Bean("testPersistTopic")
+    public Destination testPersistTopic(){
+        ActiveMQTopic topic = new ActiveMQTopic(testPersistTopic);
+        return topic;
+    }
+
+
 
     @Bean("myJmsTemplate")
     public JmsTemplate myJmsTemplate(ConnectionFactory connectionFactory){
@@ -135,9 +148,10 @@ public class AmqConfig implements JmsListenerConfigurer {
         发送消息的时候，是否使用QOS的值（deliveryMode, priority, timeToLive）
         */
         myJmsTemplate.setExplicitQosEnabled(true);
-
         //设置事务模式
         myJmsTemplate.setSessionTransacted(false);
+        //设置消息过期时间
+        //myJmsTemplate.setTimeToLive(20);
 
         //设置消息确认机制
         myJmsTemplate.setSessionAcknowledgeMode(Session.CLIENT_ACKNOWLEDGE);
@@ -148,6 +162,7 @@ public class AmqConfig implements JmsListenerConfigurer {
         设置是否持久化要发送的消息，true-持久化；false-非持久化
         */
         myJmsTemplate.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+
         return myJmsTemplate;
     }
 
@@ -163,6 +178,35 @@ public class AmqConfig implements JmsListenerConfigurer {
         persistantJmsTemplate.setExplicitQosEnabled(true);
         persistantJmsTemplate.setSessionTransacted(true);
         persistantJmsTemplate.setDeliveryMode(DeliveryMode.PERSISTENT);
+        persistantJmsTemplate.setTimeToLive(15000);
         return persistantJmsTemplate;
     }
+
+    /**
+     * topic持久化消息
+     * @param connectionFactory
+     * @return
+     */
+    @Bean("topicPersistantJmsTemplate")
+    public JmsTemplate topicPersistantJmsTemplate(ConnectionFactory connectionFactory){
+        JmsTemplate persistantJmsTemplate = new JmsTemplate(connectionFactory);
+        persistantJmsTemplate.setExplicitQosEnabled(true);
+        persistantJmsTemplate.setSessionTransacted(true);
+        persistantJmsTemplate.setDeliveryMode(DeliveryMode.PERSISTENT);
+        //persistantJmsTemplate.setTimeToLive(15000);
+        return persistantJmsTemplate;
+    }
+
+
+    @Bean
+    public MessageTemplate messageTemplate(ConnectionFactory connectionFactory){
+        MessageTemplate messageTemplate = new MessageTemplate();
+        messageTemplate.setConnectionFactory(connectionFactory);
+        messageTemplate.setName(testQueue);
+        messageTemplate.setTopic(false);
+        return messageTemplate;
+    }
+
+
+
 }

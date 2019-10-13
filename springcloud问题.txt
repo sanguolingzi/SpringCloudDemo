@@ -42,3 +42,11 @@
    等信息
 7、jmstemplate的发送方法似乎没有发送以后接收broker的回调有支持,意味着使用jmsTemplate消息的丢失无法捕获
    而原生的activemqProducer有send方法支持接收broker的处理结果
+
+
+
+2019-10-08
+1、若使用默认的方式每次开启新的连接再关闭,那么在短时间大量有消息产生的时候会报错
+     address in use
+   修改activemq的连接connectFactory，使用poolConnectionFactory 连接池维护指定数目的连接
+   带来的问题是 这个工厂里的连接创建的MessageProducer 无法使用带回调的send方法

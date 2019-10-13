@@ -1,9 +1,5 @@
 package demo.config;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.ActiveMQPrefetchPolicy;
-import org.apache.activemq.RedeliveryPolicy;
-import org.apache.activemq.pool.PooledConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,10 +14,12 @@ import org.springframework.util.backoff.FixedBackOff;
 import javax.jms.ConnectionFactory;
 import java.util.concurrent.Executors;
 
-@Configuration
-public class AmqConfig implements JmsListenerConfigurer {
 
-    private static final Logger logger = LoggerFactory.getLogger(AmqConfig.class);
+
+@Configuration
+public class TopciAmqConfig implements JmsListenerConfigurer {
+
+    private static final Logger logger = LoggerFactory.getLogger(TopciAmqConfig.class);
 
     @Value("${spring.activemq.broker-url}")
     private String url;
@@ -41,8 +39,8 @@ public class AmqConfig implements JmsListenerConfigurer {
     /**
      * 全局设置
      * @return
-     */
-    @Bean
+
+    @Bean("topicConnectionFactory")
     public ConnectionFactory connectionFactory() {
         //targetConnectionFactory
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(userName, password, url);
@@ -75,14 +73,15 @@ public class AmqConfig implements JmsListenerConfigurer {
         pooledConnectionFactory.setConnectionFactory(connectionFactory);
         return pooledConnectionFactory;
     }
+     */
     /**
-     * 控制 jmslistener连接
+     * 控制 jmslistener连接 Topic用
      * @param connectionFactory
      * @return
      */
-    @Bean("jmsListenerContainerFactory")
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory,
-             DefaultJmsListenerContainerFactoryConfigurer configurer) {
+    @Bean("jmsListenerContainerFactoryForOrderTestTopic")
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactoryForOrderTestTopic(ConnectionFactory connectionFactory,
+                                                                          DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         //设置消息确认模式 这里设置的是单条消息确认 由于和spring集成 用client确认模式 会被spring自动确认
@@ -97,6 +96,9 @@ public class AmqConfig implements JmsListenerConfigurer {
         factory.setTaskExecutor(Executors.newFixedThreadPool(20));
         //每个任务最大的任务数目
         //factory.setMaxMessagesPerTask(1);
+        factory.setPubSubDomain(true);
+        factory.setClientId("orderTestTopic");
+        factory.setSubscriptionDurable(true);
         //设置信息
         configurer.configure(factory, connectionFactory);
         return factory;
